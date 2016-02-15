@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#slim
+gem 'slim-rails'
+gem 'html2slim'
 # User Authorization
 gem 'devise'
 gem 'cancancan'
