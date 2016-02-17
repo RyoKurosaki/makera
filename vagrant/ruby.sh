@@ -8,6 +8,7 @@ rbenv global 2.3.0
 
 gem install bundler
 rbenv rehash
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 cd /vagrant
 bundle install
