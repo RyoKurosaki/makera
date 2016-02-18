@@ -9,6 +9,8 @@ gem 'html2slim'
 
 gem 'pg', '0.17.1'
 
+gem 'puma'
+
 # User Authorization
 gem 'devise'
 gem 'cancancan'

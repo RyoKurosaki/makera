@@ -98,6 +98,7 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    puma (2.16.0)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -216,6 +217,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg (= 0.17.1)
+  puma
   rails (= 4.2.5)
   rails-assets-fullcalendar!
   rails_12factor (= 0.0.2)
