@@ -1,8 +1,7 @@
 class GetReservationsJob < ActiveJob::Base
   queue_as :default
 
-  def perform(message)
-    puts message
+  def perform()
     require 'net/http'
     header = {}
     header["Content-Type"] = "application/json"

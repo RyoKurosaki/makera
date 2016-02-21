@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get 'logins/show'
 
   resources :reservations, only: [:index]
+  get "reservations/get_events"
 end
