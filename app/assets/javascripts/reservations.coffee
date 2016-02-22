@@ -1,2 +1,6 @@
 $ ->
-  $('#calendar').fullCalendar({events: '/reservations/get_events.json'})
+  $('#calendar').fullCalendar(
+    defaultView: 'timelineMonth'
+    events: '/reservations/get_events.json'
+    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
+  )

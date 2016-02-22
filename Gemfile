@@ -55,4 +55,5 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-fullcalendar'
+  gem 'rails-assets-fullcalendar-scheduler'
 end
