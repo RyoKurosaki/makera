@@ -32,7 +32,8 @@ if [[ ! -e /etc/init.d/postgresql ]]; then
   sudo -u postgres /usr/lib/postgresql/9.4/bin/initdb -D /usr/local/pgsql/data
 
   sed -i '/local.*/d' /etc/postgresql/9.4/main/pg_hba.conf
-  echo "local all all trust" >> /etc/postgresql/9.4/main/pg_hba.conf
+  echo "local all all     trust" >> /etc/postgresql/9.4/main/pg_hba.conf
+  echo "host  all all all trust" >> /etc/postgresql/9.4/main/pg_hba.conf
   echo "listen_addresses = '*'" >> /etc/postgresql/9.4/main/postgresql.conf
   sed -i 's|UTC|Asia/Tokyo|' /etc/postgresql/9.4/main/postgresql.conf
   update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
