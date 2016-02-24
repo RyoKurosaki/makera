@@ -1,6 +1,6 @@
 json.array! @reservations do |reservation|
-
-  json.title "#{reservation.guest_name}"
+  json.resourceId "#{reservation.listing_id}"
+  json.title "#{reservation.guest_name} #{reservation.number_of_guests}persons"
   json.start "#{reservation.start_date}T15:00:00Z"
   json.end "#{reservation.end_date}T10:00:00Z"
 end
