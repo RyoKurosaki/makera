@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
   end
 
   def get_resources
-    @reservations = Reservation.includes(:listing)
+    @reservations = Reservation.includes(:listing).references(:listings)
     render "get_resources", :formats => [:json], :handlers => [:jbuilder]
   end
 end
