@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   def has_role?(name)
     self.roles.where(name: name).length > 0
   end
+  validates :name, presence: true, length: { maximum: 50 }
 end

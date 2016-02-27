@@ -1,3 +1,5 @@
 h1 Makera app
 p Cleaning
-p = link_to 'reservations', reservations_path
+p
+  - if user_signed_in?
+    = link_to 'reservations', reservations_path
