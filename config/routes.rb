@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index]
   get "reservations/get_events"
   get "reservations/get_resources"
+
+  resources :hosts
 end

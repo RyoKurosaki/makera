@@ -1,0 +1,25 @@
+h1 Manage hosts
+
+table
+  thead
+    tr
+      th Host name
+      th Host ID
+      th E-Mail
+      th Password
+      th
+
+  tbody
+    - @hosts.each do |host|
+      tr
+        td = host.host_name
+        td = host.host_id
+        td = host.email
+        td = host.password
+        td = link_to 'Show', host
+        td = link_to 'Edit', edit_host_path(host)
+        td = link_to 'Destroy', host, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Host', new_host_path
