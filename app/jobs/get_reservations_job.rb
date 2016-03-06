@@ -3,11 +3,7 @@ class GetReservationsJob < ActiveJob::Base
 
   def perform()
     require 'net/http'
-    header = {}
-    header["Content-Type"] = "application/json"
-    header["X-Airbnb-API-Key"] = "915pw2pnf4h1aiguhph5gc5b2"
-    header["X-Airbnb-Currency"] = "JPY"
-
+    header = Constants::AIRBNB_CONFIG
     hosts = Host.all
     hosts.each do |host|
       header["X-Airbnb-OAuth-Token"] = host.access_token

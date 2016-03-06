@@ -24,7 +24,33 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
-    @host = Host.new(host_params)
+    require 'net/http'
+    header = Constants::AIRBNB_CONFIG
+    url = URI.parse("https://api.airbnb.com/v1/authorize")
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    req = Net::HTTP::Post.new(url.path, header)
+
+    req.set_form_data({'username' => host_params["email"], 'password' => host_params["password"], 'prevent_account_creation' => 'true'})
+    res = https.start do |http|
+      http.request(req)
+    end
+    hash = host_params
+    hash["access_token"] = JSON.parse(res.body)["access_token"]
+
+    header["X-Airbnb-OAuth-Token"] = hash["access_token"]
+    url = URI.parse("https://api.airbnb.com/v1/account/active")
+    req = Net::HTTP::Get.new(url.path, header)
+    res = https.start do |http|
+      http.request(req)
+    end
+    user = JSON.parse(res.body)['user']
+    host_id = user['user']['id']
+    host_name = user['user']['first_name']
+
+    @host = Host.new(hash)
 
     respond_to do |format|
       if @host.save
@@ -69,6 +95,6 @@ class HostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def host_params
-      params.require(:host).permit(:email, :password)
+      params.require(:host).permit(:email, :password, :access_token)
     end
 end
