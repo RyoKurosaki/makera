@@ -4,6 +4,7 @@ class HostsController < ApplicationController
   # GET /hosts
   # GET /hosts.json
   def index
+    # TODO ここをallじゃなくてユーザー毎で取得するホスト情報を変更するようにする
     @hosts = Host.all
   end
 
@@ -24,31 +25,13 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
-    require 'net/http'
-    header = Constants::AIRBNB_CONFIG
-    url = URI.parse("https://api.airbnb.com/v1/authorize")
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    https.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    req = Net::HTTP::Post.new(url.path, header)
-
-    req.set_form_data({'username' => host_params["email"], 'password' => host_params["password"], 'prevent_account_creation' => 'true'})
-    res = https.start do |http|
-      http.request(req)
-    end
+    require 'airbnb/client'
     hash = host_params
-    hash["access_token"] = JSON.parse(res.body)["access_token"]
+    hash["access_token"] = Airbnb::Client.get_access_token(host_params["email"], host_params["password"])
 
-    header["X-Airbnb-OAuth-Token"] = hash["access_token"]
-    url = URI.parse("https://api.airbnb.com/v1/account/active")
-    req = Net::HTTP::Get.new(url.path, header)
-    res = https.start do |http|
-      http.request(req)
-    end
-    user = JSON.parse(res.body)['user']
-    host_id = user['user']['id']
-    host_name = user['user']['first_name']
+    user = Airbnb::Client.get_host_info(hash["access_token"])
+    hash["host_id"] = user['user']['id']
+    hash["host_name"] = user['user']['first_name']
 
     @host = Host.new(hash)
 
