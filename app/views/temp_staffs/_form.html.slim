@@ -1,0 +1,27 @@
+= form_for @temp_staff do |f|
+  - if @temp_staff.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@temp_staff.errors.count, "error")} prohibited this temp_staff from being saved:"
+      ul
+        - @temp_staff.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :tel
+    = f.text_field :tel
+  .field
+    = f.label :interview_request_date
+    = f.date_select :interview_request_date
+  .field
+    = f.label :line_id
+    = f.text_field :line_id
+  .field
+    = f.label :inquiry
+    = f.text_area :inquiry
+  .actions = f.submit

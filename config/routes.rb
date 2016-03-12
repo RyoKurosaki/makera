@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :temp_staffs
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users
@@ -10,11 +9,12 @@ Rails.application.routes.draw do
   end
   root to: "logins#index"
   get 'logins/index'
-  get 'logins/show'
 
   resources :reservations, only: [:index]
   get "reservations/get_events"
   get "reservations/get_resources"
 
   resources :hosts
+  resources :temp_staffs, except: [:show]
+  get "temp_staffs/thanks"
 end

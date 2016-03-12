@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
-  before_action :sign_in_required
-  
+  before_action :authenticate_user!
+
   def index
   end
 

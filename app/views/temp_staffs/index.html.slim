@@ -1,0 +1,28 @@
+h1 Listing temp_staffs
+
+table
+  thead
+    tr
+      th Name
+      th Email
+      th Tel
+      th Interview request date
+      th Interview date
+      th Line ID
+      th Inquiry
+      th
+      th
+      th
+
+  tbody
+    - @temp_staffs.each do |temp_staff|
+      tr
+        td = temp_staff.name
+        td = temp_staff.email
+        td = temp_staff.tel
+        td = temp_staff.interview_request_date
+        td = temp_staff.interview_date
+        td = temp_staff.line_id
+        td = temp_staff.inquiry
+        td = link_to 'Edit', edit_temp_staff_path(temp_staff)
+        td = link_to 'Destroy', temp_staff, data: {:confirm => 'Are you sure?'}, :method => :delete
