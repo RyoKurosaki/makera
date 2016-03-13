@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   get "reservations/get_resources"
 
   resources :hosts
-  resources :temp_staffs, except: [:show]
-  get "temp_staffs/thanks"
+  resources :temp_staffs, except: [:show] do
+    member do
+      get 'confirm'
+    end
+    collection do
+      get 'thanks'
+    end
+  end
 end

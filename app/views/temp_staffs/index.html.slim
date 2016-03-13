@@ -26,3 +26,4 @@ table
         td = temp_staff.inquiry
         td = link_to 'Edit', edit_temp_staff_path(temp_staff)
         td = link_to 'Destroy', temp_staff, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Confirm', confirm_temp_staff_path(temp_staff), data: {:confirm => 'Are you sure?'}

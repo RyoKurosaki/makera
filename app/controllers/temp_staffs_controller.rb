@@ -24,7 +24,7 @@ class TempStaffsController < ApplicationController
 
     respond_to do |format|
       if @temp_staff.save
-        format.html { redirect_to temp_staffs_thanks_path, notice: 'Temp staff was successfully created.' }
+        format.html { redirect_to thanks_temp_staffs_path, notice: 'Temp staff was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @temp_staff.errors, status: :unprocessable_entity }
@@ -55,6 +55,26 @@ class TempStaffsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to temp_staffs_url, notice: 'Temp staff was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def confirm
+    require 'utils/common_util'
+    @user = User.new
+    @user.name = @temp_staff.name
+    @user.email = @temp_staff.email
+    puts pass = Utils::CommonUtil.password_gen
+    @user.password = pass
+
+    respond_to do |format|
+      if @user.save
+        @temp_staff.destroy
+        format.html { redirect_to temp_staffs_url, notice: 'Temp staff was successfully resisted as regular staff.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to temp_staffs_url, notice: 'Temp staff was not resisted. please tell the administrator' }
+        format.json { render json: @temp_staff.errors, status: :unprocessable_entity }
+      end
     end
   end
 
