@@ -63,12 +63,11 @@ class TempStaffsController < ApplicationController
     @user = User.new
     @user.name = @temp_staff.name
     @user.email = @temp_staff.email
-    puts pass = Utils::CommonUtil.password_gen
-    @user.password = pass
-
+    @user.password = Utils::CommonUtil.password_gen
     respond_to do |format|
       if @user.save
         @temp_staff.destroy
+        RegisteredMailerJob.perform_later(@user, @user.password)
         format.html { redirect_to temp_staffs_url, notice: 'Temp staff was successfully resisted as regular staff.' }
         format.json { head :no_content }
       else
