@@ -6,22 +6,22 @@
         - @temp_staff.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class:'form-control'
+  .field.form-group
     = f.label :email
-    = f.text_field :email
-  .field
+    = f.text_field :email, class:'form-control'
+  .field.form-group
     = f.label :tel
-    = f.text_field :tel
-  .field
+    = f.text_field :tel, class:'form-control'
+  .field.form-group
     = f.label :interview_request_date
-    = f.date_select :interview_request_date
-  .field
+    = f.date_select :interview_request_date, class:'form-control'
+  .field.form-group
     = f.label :line_id
-    = f.text_field :line_id
-  .field
+    = f.text_field :line_id, class:'form-control'
+  .field.form-group
     = f.label :inquiry
-    = f.text_area :inquiry
-  .actions = f.submit
+    = f.text_area :inquiry, class:'form-control'
+  .actions = f.submit :submit, class:'btn btn-default'

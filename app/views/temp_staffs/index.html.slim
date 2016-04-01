@@ -1,29 +1,34 @@
-h1 Listing temp_staffs
+.row
+  .col-sm-2
+  .col-sm-8
+    h1 仮登録スタッフ
 
-table
-  thead
-    tr
-      th Name
-      th Email
-      th Tel
-      th Interview request date
-      th Interview date
-      th Line ID
-      th Inquiry
-      th
-      th
-      th
+    .table-responsive
+      table class = 'table table-striped table-hover'
+        thead
+          tr
+            th Name
+            th Email
+            th Tel
+            th Interview request date
+            th Interview date
+            th Line ID
+            th Inquiry
+            th
+            th
+            th
 
-  tbody
-    - @temp_staffs.each do |temp_staff|
-      tr
-        td = temp_staff.name
-        td = temp_staff.email
-        td = temp_staff.tel
-        td = temp_staff.interview_request_date
-        td = temp_staff.interview_date
-        td = temp_staff.line_id
-        td = temp_staff.inquiry
-        td = link_to 'Edit', edit_temp_staff_path(temp_staff)
-        td = link_to 'Destroy', temp_staff, data: {:confirm => 'Are you sure?'}, :method => :delete
-        td = link_to 'Confirm', confirm_temp_staff_path(temp_staff), data: {:confirm => 'Are you sure?'}
+        tbody
+          - @temp_staffs.each do |temp_staff|
+            tr
+              td = temp_staff.name
+              td = temp_staff.email
+              td = temp_staff.tel
+              td = temp_staff.interview_request_date
+              td = temp_staff.interview_date
+              td = temp_staff.line_id
+              td = temp_staff.inquiry
+              td = link_to 'Edit', edit_temp_staff_path(temp_staff)
+              td = link_to 'Destroy', temp_staff, data: {:confirm => 'Are you sure?'}, :method => :delete
+              td = link_to 'Confirm', confirm_temp_staff_path(temp_staff), data: {:confirm => 'Are you sure?'}
+  .col-sm-2

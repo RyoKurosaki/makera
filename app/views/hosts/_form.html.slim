@@ -6,10 +6,10 @@
         - @host.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.form-group
     = f.label :email
-    = f.text_field :email
-  .field
+    = f.text_field :email, class:'form-control'
+  .field.form-group
     = f.label :password
-    = f.text_field :password
-  .actions = f.submit
+    = f.text_field :password, class:'form-control'
+  .actions = f.submit :submit, class:'btn btn-default'

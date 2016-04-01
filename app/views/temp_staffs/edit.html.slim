@@ -1,35 +1,39 @@
-h1 Editing temp_staff
+.row
+  .col-sm-2
+  .col-sm-8
+    h1 Editing temp_staff
 
-= form_for @temp_staff do |f|
-  - if @temp_staff.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@temp_staff.errors.count, "error")} prohibited this temp_staff from being saved:"
-      ul
-        - @temp_staff.errors.full_messages.each do |message|
-          li = message
+    = form_for @temp_staff do |f|
+      - if @temp_staff.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@temp_staff.errors.count, "error")} prohibited this temp_staff from being saved:"
+          ul
+            - @temp_staff.errors.full_messages.each do |message|
+              li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name, disabled: true
-  .field
-    = f.label :email
-    = f.text_field :email, disabled: true
-  .field
-    = f.label :tel
-    = f.text_field :tel, disabled: true
-  .field
-    = f.label :interview_request_date
-    = f.date_select :interview_request_date, disabled: true
-  .field
-    = f.label :interview_date
-    = f.datetime_select :interview_date
-  .field
-    = f.label :line_id
-    = f.text_field :line_id, disabled: true
-  .field
-    = f.label :inquiry
-    = f.text_area :inquiry, disabled: true
-  .actions = f.submit
+      .field.form-group
+        = f.label :name
+        = f.text_field :name, disabled: true, class:'form-control'
+      .field.form-group
+        = f.label :email
+        = f.text_field :email, disabled: true, class:'form-control'
+      .field.form-group
+        = f.label :tel
+        = f.text_field :tel, disabled: true, class:'form-control'
+      .field.form-group
+        = f.label :interview_request_date
+        = f.date_select :interview_request_date, disabled: true, class:'form-control'
+      .field.form-group
+        = f.label :interview_date
+        = f.datetime_select :interview_date, class:'form-control'
+      .field.form-group
+        = f.label :line_id
+        = f.text_field :line_id, disabled: true, class:'form-control'
+      .field.form-group
+        = f.label :inquiry
+        = f.text_area :inquiry, disabled: true, class:'form-control'
+      .actions = f.submit :submit, class:'btn btn-default'
 
-'|
-= link_to 'Back', temp_staffs_path
+    '|
+    = link_to 'Back', temp_staffs_path
+  .col-sm-2

@@ -6,23 +6,42 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = viewport_meta_tag
   body
     header
-      nav
-        - if user_signed_in?
-          |  Logged in as
-          strong
-            = current_user.name
-          | .
-          = link_to 'プロフィール変更', edit_user_registration_path
-          = link_to 'ログアウト', users_sign_out_path, method: :get
-          = link_to 'ホーム', root_path
-        - else
-          = link_to 'サインアップ', new_user_registration_path
-          = link_to 'スタッフ登録', new_temp_staff_path
-          = link_to 'ログイン', new_user_session_path
-    p.notice
-      = notice
-    p.alert
-      = alert
-    = yield
+      nav class = 'navbar navbar-default'
+        .container-fluid
+          .navbar-header
+            button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#bs-example-navbar-collapse-1'
+              span class = 'sr-only'
+              span class = 'icon-bar'
+              span class = 'icon-bar'
+              span class = 'icon-bar'
+            = link_to 'Makera', root_path, class:'navbar-brand'
+          .collapse.navbar-collapse#bs-example-navbar-collapse-1
+            ul class = 'nav navbar-nav'
+              - if user_signed_in?
+                li = link_to 'ホーム', root_path
+                li = link_to 'reservations', reservations_path
+                li = link_to 'hosts', hosts_path
+                li = link_to 'temp_staffs', temp_staffs_path
+            ul class = 'nav navbar-nav navbar-right'
+              - if user_signed_in?
+                li = link_to current_user.name, root_path
+                li = link_to 'プロフィール変更', edit_user_registration_path
+                li = link_to destroy_user_session_path, method: :get do
+                  span.glyphicon.glyphicon-log-out
+                  |  ログアウト
+              - else
+                li = link_to 'スタッフ登録', new_temp_staff_path
+                li = link_to 'サインアップ', new_user_registration_path
+                li = link_to new_user_session_path do
+                  span.glyphicon.glyphicon-log-in
+                  |  ログイン
+    .container
+      = flash_messages
+      = yield
+    footer class = 'navbar-default navbar-fixed-bottom'
+      .container-fluid
+        center
+          span Makera Co., Ltd.

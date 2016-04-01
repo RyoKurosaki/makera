@@ -1,18 +1,20 @@
-p#notice = notice
+.row
+  .col-sm-2
+  .col-sm-8
+    p
+      strong Host name:
+      = @host.host_name
+    p
+      strong Host ID:
+      = @host.host_id
+    p
+      strong Email:
+      = @host.email
+    p
+      strong Password:
+      = @host.password
 
-p
-  strong Host name:
-  = @host.host_name
-p
-  strong Host ID:
-  = @host.host_id
-p
-  strong Email:
-  = @host.email
-p
-  strong Password:
-  = @host.password
-
-= link_to 'Edit', edit_host_path(@host)
-'|
-= link_to 'Back', hosts_path
+    = link_to 'Edit', edit_host_path(@host)
+    '|
+    = link_to 'Back', hosts_path
+  .col-sm-2

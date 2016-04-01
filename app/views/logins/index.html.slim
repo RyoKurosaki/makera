@@ -1,9 +1,14 @@
-h1 Makera app
-p Cleaning
-p
-  - if user_signed_in?
-    = link_to 'reservations', reservations_path
-    br
-    = link_to 'hosts', hosts_path
-    br
-    = link_to 'temp_staffs', temp_staffs_path
+.row
+  .col-sm-2
+  .col-sm-8
+    h1 お知らせ
+    .table-responsive
+      table class = 'table table-striped table-hover table-condensed'
+        thead
+
+        / tbody
+        /   - @notices.reverse_each do |notice|
+        /     tr
+        /       td = notice.created_at.strftime("%Y/%m/%d")
+        /       td = notice.text
+  .col-sm-2
