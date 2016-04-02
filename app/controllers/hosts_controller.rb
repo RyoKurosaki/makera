@@ -5,8 +5,7 @@ class HostsController < ApplicationController
   # GET /hosts
   # GET /hosts.json
   def index
-    # TODO ここをallじゃなくてユーザー毎で取得するホスト情報を変更するようにする
-    @hosts = Host.all
+    @hosts = Host.where("user_email = ?", current_user.email)
   end
 
   # GET /hosts/1
@@ -33,7 +32,7 @@ class HostsController < ApplicationController
     user = Airbnb::Client.get_host_info(hash["access_token"])
     hash["host_id"] = user['user']['id']
     hash["host_name"] = user['user']['first_name']
-
+    hash["user_email"] = current_user.email
     @host = Host.new(hash)
 
     respond_to do |format|
