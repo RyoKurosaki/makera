@@ -35,6 +35,16 @@ class HostsController < ApplicationController
     hash["user_email"] = current_user.email
     @host = Host.new(hash)
 
+    listings = Airbnb::Client.get_listing_info(hash["host_id"])
+
+    listings.each do |list|
+      listing = Listing.new
+      listing.listing_id = list['listing']['id']
+      listing.listing_address = list['listing']['address']
+      listing.host_id = hash["host_id"]
+      listing.save
+    end
+
     respond_to do |format|
       if @host.save
         format.html { redirect_to @host, notice: 'Host was successfully created.' }
@@ -63,6 +73,8 @@ class HostsController < ApplicationController
   # DELETE /hosts/1
   # DELETE /hosts/1.json
   def destroy
+    Reservation.where("host_id = ?", @host.host_id).destroy_all
+    Listing.where("host_id = ?", @host.host_id).destroy_all
     @host.destroy
     respond_to do |format|
       format.html { redirect_to hosts_url, notice: 'Host was successfully destroyed.' }

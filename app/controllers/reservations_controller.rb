@@ -5,7 +5,11 @@ class ReservationsController < ApplicationController
   end
 
   def get_events
-    @reservations = Reservation.all
+    if current_user.admin?
+      @reservations = Reservation.all
+    else
+      @reservations = Reservation.where("user_email = ?", current_user.email)
+    end
     render "get_events", :formats => [:json], :handlers => [:jbuilder]
   end
 
