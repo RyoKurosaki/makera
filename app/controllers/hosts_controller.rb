@@ -41,6 +41,7 @@ class HostsController < ApplicationController
       listing = Listing.new
       listing.listing_id = list['listing']['id']
       listing.listing_address = list['listing']['address']
+      listing.name = list['listing']['name']
       listing.host_id = hash["host_id"]
       listing.save
     end

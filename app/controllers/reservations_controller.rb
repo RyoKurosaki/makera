@@ -14,7 +14,11 @@ class ReservationsController < ApplicationController
   end
 
   def get_resources
-    @reservations = Reservation.includes(:listing).references(:listings)
+    if current_user.admin?
+      @reservations = Reservation.includes(:listing).references(:listings)
+    else
+      @reservations = Reservation.includes(:listing).references(:listings).where("user_email = ?", current_user.email)
+    end
     render "get_resources", :formats => [:json], :handlers => [:jbuilder]
   end
 end
