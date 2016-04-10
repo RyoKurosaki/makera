@@ -19,12 +19,14 @@ module Airbnb
         end
 
         if res.code == '200'
+          logger.debug('success airbnb access')
           break
         elsif res.code == '420'
           i += 1
-          restart_heroku
           logger.debug('Heroku was restarted')
+          restart_heroku
         else
+          logger.debug('500 error')
           break
         end
       end
