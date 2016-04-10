@@ -10,6 +10,7 @@ gem 'html2slim'
 gem 'pg', '0.17.1'
 
 gem 'puma'
+gem 'heroku-api'
 
 # User Authorization
 gem 'devise'

@@ -69,6 +69,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    excon (0.49.0)
     execjs (2.6.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
@@ -76,6 +77,9 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
+    heroku-api (0.4.2)
+      excon (~> 0.45)
+      multi_json (~> 1.8)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -252,6 +256,7 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.1.0)
   devise
+  heroku-api
   html2slim
   jbuilder (~> 2.0)
   jquery-rails

@@ -2,24 +2,12 @@ class GetReservationsJob < ActiveJob::Base
   queue_as :default
 
   def perform()
-    require 'net/http'
-    header = Constants::AIRBNB_CONFIG
+    require 'airbnb/client'
+
     hosts = Host.all
     hosts.each do |host|
-      header["X-Airbnb-OAuth-Token"] = host.access_token
-      url = URI.parse("https://api.airbnb.com/v2/reservations?_limit=50&_offset=0&_format=v1_legacy_long&host_id=#{host.host_id}")
-      # HTTPSを使うための設定
-      https = Net::HTTP.new(url.host, url.port)
-      https.use_ssl = true
-      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-      req = Net::HTTP::Get.new(url, header)
-
-      res = https.start do |http|
-        http.request(req)
-      end
-
-      reservations = JSON.parse(res.body)['reservations']
+      reservations = Airbnb::Client.get_reservations(host.access_token, host.host_id)
       reservations.each do |reserve|
         host_id = reserve['host']['user']['id']
         host_name = reserve['host']['user']['first_name']
