@@ -28,7 +28,7 @@ module Airbnb
             restart_heroku
             restarting = true
             Rails.logger.debug('Heroku was restarted')
-          else
+          end
           sleep 3
         else
           Rails.logger.debug('Not able to access to Airbnb Error')
