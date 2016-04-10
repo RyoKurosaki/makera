@@ -13,7 +13,7 @@ module Airbnb
       https.use_ssl = true
       https.verify_mode = OpenSSL::SSL::VERIFY_NONE
       i = 0
-      while i < 5
+      while i < 2
         res = https.start do |http|
           http.request(req)
         end
@@ -25,7 +25,7 @@ module Airbnb
           i += 1
           restart_heroku
           Rails.logger.debug('Heroku was restarted')
-          sleep 1
+          sleep 10
         else
           Rails.logger.debug('Not able to access to Airbnb Error')
           break
