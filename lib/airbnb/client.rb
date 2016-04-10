@@ -19,14 +19,14 @@ module Airbnb
         end
 
         if res.code == '200'
-          Rails.logger.debug('success airbnb access')
+          Rails.logger.debug('Success airbnb access')
           break
-        elsif res.code == '420'
+        elsif res.code == '420' || res.code == '500'
           i += 1
           Rails.logger.debug('Heroku was restarted')
           restart_heroku
         else
-          Rails.logger.debug('500 error')
+          Rails.logger.debug('Not able to access to Airbnb Error')
           break
         end
       end
