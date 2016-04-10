@@ -12,7 +12,6 @@ module Airbnb
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
       https.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      binding.pry
       i = 0
       while i < 2
         res = https.start do |http|
