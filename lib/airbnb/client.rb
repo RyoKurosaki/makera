@@ -23,6 +23,7 @@ module Airbnb
         elsif res.code == '420'
           i += 1
           restart_heroku
+          logger.debug('Heroku was restarted')
         else
           break
         end
