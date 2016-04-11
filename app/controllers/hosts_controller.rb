@@ -27,8 +27,8 @@ class HostsController < ApplicationController
   def create
     HostRegisterJob.perform_later(host_params)
     respond_to do |format|
-        format.html { redirect_to hosts_url, notice: 'Host is being created.' }
-        format.json { render :show, status: :created, location: redirect_to hosts_url }
+      format.html { redirect_to hosts_url, notice: 'Host is being created.' }
+      format.json { render :show, status: :created, location: redirect_to hosts_url }
     end
   end
 
