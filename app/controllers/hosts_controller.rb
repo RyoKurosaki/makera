@@ -25,35 +25,10 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
-    require 'airbnb/client'
-    hash = host_params
-    hash["access_token"] = Airbnb::Client.get_access_token(host_params["email"], host_params["password"])
-
-    user = Airbnb::Client.get_host_info(hash["access_token"])
-    hash["host_id"] = user['user']['id']
-    hash["host_name"] = user['user']['first_name']
-    hash["user_email"] = current_user.email
-    @host = Host.new(hash)
-
-    listings = Airbnb::Client.get_listing_info(hash["host_id"])
-
-    listings.each do |list|
-      listing = Listing.new
-      listing.listing_id = list['listing']['id']
-      listing.listing_address = list['listing']['address']
-      listing.name = list['listing']['name']
-      listing.host_id = hash["host_id"]
-      listing.save
-    end
-
+    HostRegisterJob.perform_later(host_params)
     respond_to do |format|
-      if @host.save
-        format.html { redirect_to @host, notice: 'Host was successfully created.' }
-        format.json { render :show, status: :created, location: @host }
-      else
-        format.html { render :new }
-        format.json { render json: @host.errors, status: :unprocessable_entity }
-      end
+        format.html { redirect_to hosts_url, notice: 'Host is being created.' }
+        format.json { render :show, status: :created, location: redirect_to hosts_url }
     end
   end
 

@@ -5,7 +5,7 @@ module Airbnb
 
     def self.restart_heroku
       heroku = Heroku::API.new
-      heroku.post_ps_restart('makera')
+      heroku.post_ps_restart('makera', 'ps' => 'worker.1')
     end
 
     def self.responce_get(url, req)
@@ -20,7 +20,6 @@ module Airbnb
         end
 
         if res.code == '200'
-          Rails.logger.debug('Success airbnb access')
           break
         elsif res.code == '420' || res.code == '500'
           i += 1
@@ -30,7 +29,7 @@ module Airbnb
             Rails.logger.debug('Heroku was restarted')
           end
           Rails.logger.debug("#{i}回目")
-          sleep 3
+          sleep 5
         else
           Rails.logger.debug('Not able to access to Airbnb Error')
           break
