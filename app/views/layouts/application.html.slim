@@ -24,7 +24,8 @@ html
                 li = link_to 'ホーム', root_path
                 li = link_to 'reservations', reservations_path
                 li = link_to 'hosts', hosts_path
-                li = link_to 'temp_staffs', temp_staffs_path
+                - if current_user.admin?
+                  li = link_to 'temp_staffs', temp_staffs_path
             ul class = 'nav navbar-nav navbar-right'
               - if user_signed_in?
                 li = link_to current_user.name, root_path

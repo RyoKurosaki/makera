@@ -1,5 +1,5 @@
 class TempStaffsController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create, :thanks]
+  before_action :authenticate_user!, :check_admin_user, except: [:new, :create, :thanks]
   before_action :set_temp_staff, except: [:index, :new, :create, :thanks]
 
   # GET /temp_staffs
