@@ -25,10 +25,14 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
-    HostRegisterJob.perform_later(host_params)
     respond_to do |format|
-      format.html { redirect_to hosts_url, notice: 'Host is being created.' }
-      format.json { render :show, status: :created, location: hosts_url }
+      if Utils::CommonUtil.regist_host(host_params)
+        format.html { redirect_to @host, notice: 'Host was successfully created.' }
+        format.json { render :show, status: :created, location: @host }
+      else
+        Utils::CommonUtil.restart_heroku
+        format.html { render :new, notice: 'AirbnbがBusy状態のため後ほど登録されます。このままお待ちください。' }
+      end
     end
   end
 

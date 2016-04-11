@@ -1,41 +1,18 @@
 module Airbnb
   class Client
     require 'net/http'
-    require 'heroku-api'
-
-    def self.restart_heroku
-      heroku = Heroku::API.new
-      heroku.post_ps_restart('makera')
-    end
 
     def self.responce_get(url, req)
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
       https.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      i = 0
-      restarting = false
-      while i < 10
-        res = https.start do |http|
-          http.request(req)
-        end
-
-        if res.code == '200'
-          break
-        elsif res.code == '420' || res.code == '500'
-          i += 1
-          if !restarting
-            restart_heroku
-            restarting = true
-            Rails.logger.debug('Heroku was restarted')
-          end
-          Rails.logger.debug("#{i}回目")
-          sleep 5
-        else
-          Rails.logger.debug('Not able to access to Airbnb Error')
-          break
-        end
+      res = https.start do |http|
+        http.request(req)
       end
-      res
+
+      if res.code == '420' || res.code == '500'
+        raise ServerError, "Airbnb アクセス制限"
+      end
     end
 
     def self.get_reservations(access_token, host_id)

@@ -1,0 +1,1 @@
+class ServerError < StandardError; end
