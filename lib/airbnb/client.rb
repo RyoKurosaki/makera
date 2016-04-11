@@ -5,7 +5,7 @@ module Airbnb
 
     def self.restart_heroku
       heroku = Heroku::API.new
-      heroku.post_ps_restart('makera', 'ps' => 'worker.1')
+      heroku.post_ps_restart('makera')
     end
 
     def self.responce_get(url, req)
