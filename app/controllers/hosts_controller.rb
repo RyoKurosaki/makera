@@ -25,13 +25,16 @@ class HostsController < ApplicationController
   # POST /hosts
   # POST /hosts.json
   def create
+    add_current_user = host_params
+    add_current_user["user_email"] = current_user.email
     respond_to do |format|
-      if Utils::CommonUtil.regist_host(host_params)
+      if Utils::CommonUtil.regist_host(add_current_user)
+        @host = Host.where("email = ?", add_current_user["email"]).first
         format.html { redirect_to @host, notice: 'Host was successfully created.' }
         format.json { render :show, status: :created, location: @host }
       else
         Utils::CommonUtil.restart_heroku
-        format.html { render :new, notice: 'AirbnbがBusy状態のため後ほど登録されます。このままお待ちください。' }
+        format.html { redirect_to hosts_url, notice: 'AirbnbがBusy状態のため後ほど登録されます。このままお待ちください。' }
       end
     end
   end

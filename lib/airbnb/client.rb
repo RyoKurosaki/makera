@@ -9,10 +9,10 @@ module Airbnb
       res = https.start do |http|
         http.request(req)
       end
-
       if res.code == '420' || res.code == '500'
         raise ServerError, "Airbnb アクセス制限"
       end
+      res
     end
 
     def self.get_reservations(access_token, host_id)
