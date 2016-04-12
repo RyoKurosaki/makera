@@ -6,4 +6,10 @@
         - @listing.errors.full_messages.each do |message|
           li = message
 
-  .actions = f.submit
+  .field.form-group
+    = f.label :name
+    = f.text_field :name, disabled: true, class:'form-control'
+  .field.form-group
+    = f.label :listing_address
+    = f.text_field :listing_address, disabled: true, class:'form-control'
+  .actions = f.submit :submit, class:'btn btn-default'

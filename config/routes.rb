@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "reservations/get_events"
   get "reservations/get_resources"
 
+  resources :listings, only: [:index, :show, :edit, :update]
   resources :hosts
   resources :temp_staffs, except: [:show] do
     member do

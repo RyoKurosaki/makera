@@ -1,6 +1,17 @@
-p#notice = notice
+.row
+  .col-sm-2
+  .col-sm-8
+    p
+      strong Listing ID:
+      = @listing.listing_id
+    p
+      strong Listing name:
+      = @listing.name
+    p
+      strong Listing addres:
+      = @listing.listing_address
 
-
-= link_to 'Edit', edit_listing_path(@listing)
-'|
-= link_to 'Back', listings_path
+    = link_to 'Edit', edit_listing_path(@listing)
+    '|
+    = link_to 'Back', listings_path
+  .col-sm-2

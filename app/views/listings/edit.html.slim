@@ -1,8 +1,11 @@
-h1 Editing listing
+.row
+  .col-sm-2
+  .col-sm-8
+    h1 Editing listing
 
-== render 'form'
+    == render 'form'
 
-= link_to 'Show', @listing
-'|
-= link_to 'Back', listings_path
-
+    = link_to 'Show', @listing
+    '|
+    = link_to 'Back', listings_path
+  .col-sm-2

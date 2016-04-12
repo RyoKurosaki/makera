@@ -13,9 +13,9 @@ class ListingsController < ApplicationController
   end
 
   # GET /listings/new
-  def new
-    @listing = Listing.new
-  end
+  # def new
+  #   @listing = Listing.new
+  # end
 
   # GET /listings/1/edit
   def edit
@@ -23,19 +23,19 @@ class ListingsController < ApplicationController
 
   # POST /listings
   # POST /listings.json
-  def create
-    @listing = Listing.new(listing_params)
-
-    respond_to do |format|
-      if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.json { render :show, status: :created, location: @listing }
-      else
-        format.html { render :new }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def create
+  #   @listing = Listing.new(listing_params)
+  #
+  #   respond_to do |format|
+  #     if @listing.save
+  #       format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
+  #       format.json { render :show, status: :created, location: @listing }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @listing.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
@@ -53,13 +53,13 @@ class ListingsController < ApplicationController
 
   # DELETE /listings/1
   # DELETE /listings/1.json
-  def destroy
-    @listing.destroy
-    respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @listing.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +69,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params[:listing]
+      params.require(:listing).permit(:listing_address)
     end
 end
