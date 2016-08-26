@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   root to: "logins#index"
   get 'logins/index'
 
+  resources :schedules, only: [:index]
+  get "schedules/get_events"
+
   resources :reservations, only: [:index]
   get "reservations/get_events"
   get "reservations/get_resources"

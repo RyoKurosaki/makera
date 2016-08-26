@@ -23,6 +23,7 @@ html
               - if user_signed_in?
                 li = link_to 'ホーム', root_path
                 li = link_to 'reservations', reservations_path
+                li = link_to 'schedules', schedules_path
                 li = link_to 'hosts', hosts_path
                 li = link_to 'listings', listings_path
                 - if current_user.admin?
