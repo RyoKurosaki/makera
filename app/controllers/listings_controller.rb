@@ -19,6 +19,8 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+    @listing.active_time_start = @listing.active_time_start.strftime('%I:%M %p')
+    @listing.active_time_end = @listing.active_time_end.strftime('%I:%M %p')
   end
 
   # POST /listings
@@ -69,6 +71,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing_address)
+      params.require(:listing).permit(:listing_address, :auto_active_deactive, :active_time_start, :active_time_end)
     end
 end

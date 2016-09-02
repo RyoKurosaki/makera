@@ -12,4 +12,37 @@
   .field.form-group
     = f.label :listing_address
     = f.text_field :listing_address, disabled: true, class:'form-control'
+  .row
+    .col-sm-4
+      .field.form-group
+        = f.label :auto_active_deactive
+        br
+        - addclasson = ''
+        - addclassoff = ''
+        - if @listing.auto_active_deactive
+          - addclasson = ' active'
+        - else
+          - addclassoff = ' active'
+        div.btn-group data-toggle='buttons'
+          = f.label :auto_active_deactive, class:'btn btn-default'+ addclasson
+            = f.radio_button :auto_active_deactive, true, autocomplete:'off'
+            | on
+          = f.label :auto_active_deactive, class:'btn btn-default'+ addclassoff
+            = f.radio_button :auto_active_deactive, false, autocomplete:'off'
+            | off
+    .col-sm-4
+      .field.form-group
+        = f.label :active_time_start
+        .input-group.date#activestart
+          = f.text_field :active_time_start, readonly: true, class:'form-control'
+          span.input-group-addon
+            span.glyphicon.glyphicon-time
+    .col-sm-4
+      .field.form-group
+        = f.label :active_time_end
+        .input-group.date#activeend
+          = f.text_field :active_time_end, readonly: true, class:'form-control'
+          span.input-group-addon
+            span.glyphicon.glyphicon-time
+
   .actions = f.submit :submit, class:'btn btn-default'

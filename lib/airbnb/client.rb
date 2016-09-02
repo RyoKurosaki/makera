@@ -48,5 +48,24 @@ module Airbnb
       res = responce_get(url, Net::HTTP::Get.new(url.path, header))
       JSON.parse(res.body)['listings']
     end
+
+    def self.change_listing_active_state(listing_id, access_token, availability)
+      header = Constants::AIRBNB_CONFIG
+      header["X-Airbnb-OAuth-Token"] = access_token
+      url = URI.parse("https://api.airbnb.com/v1/listings/#{listing_id}/update")
+      req = Net::HTTP::Post.new(url.path, header)
+      jbody = {
+        "listing" => {
+          "has_availability" => availability
+        }
+      }.to_json
+      req.body = jbody
+      res = responce_get(url, req)
+      if 'success' == JSON.parse(res.body)['result']
+        true
+      else
+        false
+      end
+    end
   end
 end

@@ -48,4 +48,6 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-fullcalendar'
   gem 'rails-assets-fullcalendar-scheduler'
+  gem 'rails-assets-momentjs'
+  gem 'rails-assets-bootstrap3-datetimepicker'
 end

@@ -10,6 +10,15 @@
     p
       strong Listing addres:
       = @listing.listing_address
+    p
+      strong Auto_active_deactive:
+      = @listing.auto_active_deactive
+    p
+      strong Active_time_start:
+      = @listing.active_time_start.strftime('%I:%M %p')
+    p
+      strong Active_time_end:
+      = @listing.active_time_end.strftime('%I:%M %p')
 
     = link_to 'Edit', edit_listing_path(@listing)
     '|
