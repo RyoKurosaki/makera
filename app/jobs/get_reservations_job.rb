@@ -26,7 +26,7 @@ class GetReservationsJob < ActiveJob::Base
         reservation.number_of_guests = number_of_guests
         reservation.reservation_id = reservation_id
         reservation.listing_id = listing_id
-        reservation.user_email = host.user_email
+        reservation.user_id = host.user_id
         reservation.save
       end
     end

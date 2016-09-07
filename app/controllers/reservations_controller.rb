@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
     if current_user.admin?
       @reservations = Reservation.all
     else
-      @reservations = Reservation.where("user_email = ?", current_user.email)
+      @reservations = Reservation.where("user_id = ?", current_user.id)
     end
     render "get_events", :formats => [:json], :handlers => [:jbuilder]
   end
@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
     if current_user.admin?
       @reservations = Reservation.includes(:listing).references(:listings)
     else
-      @reservations = Reservation.includes(:listing).references(:listings).where("user_email = ?", current_user.email)
+      @reservations = Reservation.includes(:listing).references(:listings).where("user_id = ?", current_user.id)
     end
     render "get_resources", :formats => [:json], :handlers => [:jbuilder]
   end

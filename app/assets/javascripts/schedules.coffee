@@ -3,12 +3,14 @@ $ ->
     defaultView: 'month'
     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
     events: '/schedules/get_events.json'
-    eventMouseover: (calEvent, jsEvent)->
-      $('body').prepend(calEvent.tooltip)
-      xOffset = 30 + $('#tooltip').height()
-      yOffset = -20
-
-      $('#tooltip').css('top', (jsEvent.clientY - xOffset) + 'px').css('left', (jsEvent.clientX + yOffset) + 'px').fadeIn()
-    eventMouseout: (calEvent, jsEvent)->
-      $('#tooltip').remove()
+    editable: true
+    eventRender: (event, element) ->
+      element.qtip(
+        content:
+          text: event.tooltip
+          title:
+            text: 'title'
+        style:
+          classes: 'qtip-blue qtip-rounded'
+      )
   )

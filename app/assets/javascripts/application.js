@@ -18,4 +18,5 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap3-datetimepicker
+//= require qTip2
 //= require_tree .

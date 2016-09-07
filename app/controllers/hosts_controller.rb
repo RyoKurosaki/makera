@@ -5,7 +5,7 @@ class HostsController < ApplicationController
   # GET /hosts
   # GET /hosts.json
   def index
-    @hosts = Host.where("user_email = ?", current_user.email)
+    @hosts = Host.where("user_id = ?", current_user.id.to_s)
   end
 
   # GET /hosts/1
@@ -26,7 +26,7 @@ class HostsController < ApplicationController
   # POST /hosts.json
   def create
     add_current_user = host_params
-    add_current_user["user_email"] = current_user.email
+    add_current_user["user_id"] = current_user.id
     respond_to do |format|
       if Utils::CommonUtil.regist_host(add_current_user)
         @host = Host.where("email = ?", add_current_user["email"]).first

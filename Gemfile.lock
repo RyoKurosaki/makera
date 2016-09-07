@@ -148,6 +148,7 @@ GEM
       rails-assets-jquery (>= 1.8.3)
       rails-assets-moment (>= 2.9.0)
       rails-assets-moment-timezone (>= 0.4.0)
+    rails-assets-ev-emitter (1.0.3)
     rails-assets-fullcalendar (2.6.0)
       rails-assets-jquery (>= 1.7.1)
       rails-assets-moment (>= 2.5.0)
@@ -155,11 +156,16 @@ GEM
       rails-assets-fullcalendar (>= 2.5.0)
       rails-assets-jquery (>= 1.8.0)
       rails-assets-moment (>= 2.5.0)
+    rails-assets-imagesloaded (4.1.1)
+      rails-assets-ev-emitter (~> 1.0.0)
     rails-assets-jquery (2.2.0)
     rails-assets-moment (2.11.2)
     rails-assets-moment-timezone (0.5.5)
       rails-assets-moment (>= 2.6.0)
     rails-assets-momentjs (2.14.1)
+    rails-assets-qTip2 (3.0.2)
+      rails-assets-imagesloaded (>= 3.0.0)
+      rails-assets-jquery (>= 1.6.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -277,6 +283,7 @@ DEPENDENCIES
   rails-assets-fullcalendar!
   rails-assets-fullcalendar-scheduler!
   rails-assets-momentjs!
+  rails-assets-qTip2!
   rails_12factor (= 0.0.2)
   rails_admin
   sass-rails (~> 5.0)

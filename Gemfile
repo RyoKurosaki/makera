@@ -50,4 +50,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-fullcalendar-scheduler'
   gem 'rails-assets-momentjs'
   gem 'rails-assets-bootstrap3-datetimepicker'
+  gem 'rails-assets-qTip2'
 end
