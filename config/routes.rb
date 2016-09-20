@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: "logins#index"
   get 'logins/index'
 
-  resources :schedules, only: [:index]
+  resources :schedules, only: [:index, :edit, :update]
   get "schedules/get_events"
 
   resources :reservations, only: [:index]

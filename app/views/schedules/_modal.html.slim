@@ -1,0 +1,47 @@
+.modal-dialog
+  .modal-content
+    = form_for @schedule, remote: true do |f|
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+        h4.modal-title スケジュール編集
+      .modal-body
+        strong Listing Name
+        br
+        = @schedule.listing.name
+        br
+        strong Next check in
+        br
+        = @schedule.reservation.start_date.strftime('%Y/%m/%d')
+        .field.form-group
+          = f.label :cleaning_date
+          .input-group.date.datepicker
+            = f.text_field :cleaning_date, readonly: true, data: { :date_format => 'YYYY/MM/DD' }, class:'form-control'
+            span.input-group-addon
+              span.glyphicon.glyphicon-calendar
+        .field.form-group
+          = f.label :staff
+          - staffs = User.where(:staff => true).order(:id).map { |c| [c.name, c.id] }
+          = f.select :staff_id, staffs, { include_blank: true }, class: 'form-control'
+        .row
+          .col-sm-4
+            .field.form-group
+              = f.label :start_time
+              .input-group.date#startat
+                = f.text_field :start_time, readonly: true, class:'form-control'
+                span.input-group-addon
+                  span.glyphicon.glyphicon-time
+          .col-sm-4
+            .field.form-group
+              = f.label :end_time
+              .input-group.date#endat
+                = f.text_field :end_time, readonly: true, class:'form-control'
+                span.input-group-addon
+                  span.glyphicon.glyphicon-time
+          .col-sm-4
+            .field.form-group
+              = f.label :wait_time
+              - times = [['10分', 10], ['20分', 20], ['30分', 30], ['40分', 40], ['50分', 50], ['60分', 60]]
+              = f.select :wait_time, times, { include_blank: true }, class: 'form-control'
+      .modal-footer
+        .actions = f.submit :submit, class:'btn btn-default'

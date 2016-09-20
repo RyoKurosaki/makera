@@ -1,7 +1,15 @@
 class SchedulesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_schedule, only: [:edit, :update]
 
   def index
+  end
+
+  def edit
+  end
+
+  def update
+    @schedule.update(schedule_params)
+    @schedules = Schedule.all
   end
 
   def get_events
@@ -21,4 +29,13 @@ class SchedulesController < ApplicationController
     end
     render "get_events", :formats => [:json], :handlers => [:jbuilder]
   end
+
+  private
+    def set_schedule
+      @schedule = Schedule.find(params[:id])
+    end
+
+    def schedule_params
+      params.require(:schedule).permit(:cleaning_date, :staff_id, :wait_time, :start_time, :end_time)
+    end
 end

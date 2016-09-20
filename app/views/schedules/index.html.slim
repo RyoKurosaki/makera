@@ -1,5 +1,6 @@
 .row
   .col-sm-12
     h1 清掃スケジュール
-    .MarginB15
-      #calendar-schedule
+    .MarginB20.schedule-index
+      == render "index"
+    #schedule-modal.modal.fade tabindex="-1" role="dialog" aria-hidden="true"
