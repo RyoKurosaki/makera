@@ -2,14 +2,18 @@
   .col-sm-2
   .col-sm-8
     p
-      strong Listing ID:
+      strong リスティングID:
       = @listing.listing_id
     p
-      strong Listing name:
+      strong リスティング名:
       = @listing.name
     p
-      strong Listing addres:
+      strong 物件住所:
       = @listing.listing_address
+    p
+      strong URL:
+      a href="https://www.airbnb.jp/rooms/#{@listing.listing_id}" target="_blank"
+        | https://www.airbnb.jp/rooms/#{@listing.listing_id}
     p
       strong 広さ:
       = @listing.area
@@ -24,13 +28,13 @@
       strong ゴミ置き場:
       = @listing.garbage
     p
-      strong Auto_active_deactive:
+      strong 公開・非公開自動切り替え:
       = @listing.auto_active_deactive
     p
-      strong Active_time_start:
+      strong 公開開始時間:
       = @listing.active_time_start.strftime('%I:%M %p')
     p
-      strong Active_time_end:
+      strong 公開終了時間:
       = @listing.active_time_end.strftime('%I:%M %p')
 
     = link_to 'Edit', edit_listing_path(@listing)

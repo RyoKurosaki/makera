@@ -1,0 +1,20 @@
+ja:
+  helpers:
+    label:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        remember_me: パスワードを記憶
+  activerecord:
+    attributes:
+      listing:
+        name: リスティング名
+        listing_address: 物件住所
+        area: 広さ
+        key: 鍵の置き場所
+        cleaning_goods: 清掃用具の置き場所
+        garbage: ゴミ置き場の場所
+        auto_active_deactive: 公開・非公開自動切り替え
+        active_time_start: 公開開始時間
+        active_time_end: 公開終了時間
