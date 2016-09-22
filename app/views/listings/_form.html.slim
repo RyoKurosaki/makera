@@ -12,6 +12,24 @@
   .field.form-group
     = f.label :listing_address
     = f.text_field :listing_address, disabled: true, class:'form-control'
+  .field.form-group
+    = f.label :area
+    br
+    span#squareLabel
+      span#squareVal
+        = @listing.area
+      | ㎡
+    br
+    = f.text_field :area, class:'form-control', id:'area', 'data-slider-value': @listing.area
+  .field.form-group
+    = f.label :key
+    = f.text_area :key, class:'form-control'
+  .field.form-group
+    = f.label :cleaning_goods
+    = f.text_area :cleaning_goods, class:'form-control'
+  .field.form-group
+    = f.label :garbage
+    = f.text_area :garbage, class:'form-control'
   .row
     .col-sm-4
       .field.form-group

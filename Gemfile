@@ -51,4 +51,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-momentjs'
   gem 'rails-assets-bootstrap3-datetimepicker'
   gem 'rails-assets-qTip2'
+  gem 'rails-assets-seiyria-bootstrap-slider'
 end

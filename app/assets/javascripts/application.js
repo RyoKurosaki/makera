@@ -19,4 +19,5 @@
 //= require moment
 //= require bootstrap3-datetimepicker
 //= require qTip2
+//= require seiyria-bootstrap-slider
 //= require_tree .
