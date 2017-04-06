@@ -6,6 +6,7 @@ $ ->
       center: '',
       right: 'prev,next today month,agendaWeek'
     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
+    eventColor: '#46BF9E'
     events: '/schedules/get_events.json'
     editable: true
     eventRender: (event, element) ->
@@ -19,6 +20,6 @@ $ ->
           solo: true
         hide: false
         style:
-          classes: 'qtip-blue qtip-rounded'
+          classes: 'qtip-jtools qtip-rounded'
       )
   )

@@ -27,6 +27,11 @@ class SchedulesController < ApplicationController
                            .where(owners: {id: current_user.id})
                            .select("schedules.*, owners.name as owner_name, owners.email as owner_email, staffs.name as staff_name")
     end
+    @schedules.each do |schedule|
+      if schedule.staff_id.blank?
+        schedule.color = 'red'
+      end
+    end
     render "get_events", :formats => [:json], :handlers => [:jbuilder]
   end
 

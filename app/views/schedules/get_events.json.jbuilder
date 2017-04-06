@@ -14,4 +14,5 @@ json.array! @schedules do |schedule|
                 【清掃予定時間】#{schedule.start_time}~#{schedule.end_time}<br>\
                 【待機時間】#{schedule.wait_time}分<br><br>\
                 #{link_to '編集', edit_schedule_path(schedule), remote: true, class:'btn btn-default btn-xs btn-block'}"
+  json.color "#{schedule.color}"
 end

@@ -5,6 +5,7 @@ $ ->
     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
     height: 600
     resourceAreaWidth: '20%'
+    eventColor: '#46BF9E'
     resourceColumns: [
       { group: true, labelText: 'Host', field: 'host' },
       { labelText: 'Listing', field: 'listing' }
